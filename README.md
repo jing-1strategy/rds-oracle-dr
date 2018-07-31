@@ -61,20 +61,22 @@ Done!
 And now the snapshots of your Oracle instance is regularly generated and cleaned.
 
 ## RPO and RTO
-RTO and RPO are one of the key considerations when building your disaster recovery solution. Here is a quick concept recap:
+RTO and RPO are key considerations when building your disaster recovery solution. Here is a quick concept recap:
 * [Recovery point objective (RPO)](https://en.wikipedia.org/wiki/Recovery_point_objective) - The acceptable amount of data loss measured in time. 
 * [Recovery time objective (RTO)](https://en.wikipedia.org/wiki/Recovery_time_objective) - The time it takes after a disaster happens to restore a business process to its service level.
 ![RPO and RTO](./images/RPO-RTO.png)
 
 For this solution, you can control the RPO by defining parameter **snapshot_frequency** in the rds_dr_deploy.sh, please pay attention that the cost of the solution will increase along with the snapshot frequency increase.
 
-As for the RTO, current solution doesn't provide features to auto-detect the RDS instance failure and auto-restore from snapshot, so the whole restore process is manually. The time it take to recover the RDS instance from a snapshots depends on how fast you react to the failure and the size of your database.  
+As for the RTO, current solution doesn't provide features to auto-detect the RDS instance failure and auto-restore from snapshot, so the whole restore process is manual. The time it takes to recover the RDS instance from a snapshots depends on how fast you react to the failure and the size of your database.  
 
 ## If you don't need to consider the option group limitation
-If don't have the option group limitation in your scenario, you can share the snapshot with DR account as soon as the snapshot is generated, and then copy the snapshot to the DR region. This will save you an copy effort to make the solution more efficient and cost effective.
+
+If don't have the option group limitation in your scenario, you can share the snapshot with DR account as soon as the snapshot is generated, and then copy the snapshot to the DR region. This will save you one round of copy and make the solution more efficient and cost effective.
 
 Here is an overview of this simplified design, you can tailer the above solution to implement this based on your needs.
 ![RDS-DR-Not-Hit-Limitation-Design](./images/RDS-DR-No-Limitation.png)
 
 ## Conclusion
+
 Hope you found this blog post useful and feel free to contact us if you need any support.
